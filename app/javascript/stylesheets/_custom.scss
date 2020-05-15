@@ -1,0 +1,61 @@
+.center{
+	text-align: center;
+}
+
+#logo:hover{
+	color: #fff;
+	text-decoration: none;
+}
+
+#logo{
+	float: left;
+	font-size: 1.7em;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	font-weight: bold;
+
+}
+
+.myNavbar   {
+    background-color: #2f8a47;
+ }
+
+ .jumbotron{
+
+ background-image: url('cover_image.jpg');
+ background-size: cover;
+ height: 300px
+ }
+
+  .jumbotron h1{
+ text-align: center;
+ margin-bottom: 30px;
+ color: #fff;
+ letter-spacing: -1px;
+ font-weight: bold;
+ }
+
+ .jumbotron h2{
+ text-align: center;
+ margin-bottom: 30px;
+ color: #fff;
+ letter-spacing: -1px;
+ font-weight: bold;
+ }
+
+ .btn-xlarge{
+background-color: #2f8a47;
+
+}
+
+ .btn-xlarge:hover{
+background-color: #fff;
+text-decoration: none;
+color: #2f8a47;
+
+ }
+ .consistent_color{
+color: #2f8a47;
+
+ }
