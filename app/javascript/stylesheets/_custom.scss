@@ -22,7 +22,6 @@
  }
 
  .jumbotron{
-
  background-image: url('cover_image.jpg');
  background-size: cover;
  height: 300px
@@ -59,3 +58,50 @@ color: #2f8a47;
 color: #2f8a47;
 
  }
+
+ body {
+  height: 100%;
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+.well a{
+  color: #2f8a47;
+}
+.description{
+  top-margin: 0
+}
+
+.chef-intro{
+  top-margin: 10px
+}

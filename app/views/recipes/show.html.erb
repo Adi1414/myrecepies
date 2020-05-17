@@ -1,0 +1,16 @@
+<%= render 'shared/title', title: @recipe.name %>
+<div class="row">
+<div class="well col-md-8 col-md-offset-2">
+<h4 class="center description"><strong>Steps:</strong></h4>
+<hr/>
+<%= simple_format(@recipe.description) %>
+<p >
+   Created by:
+</p>
+<p>
+   <small><%= @recipe.chef.chefname %>  </small>	
+   <div><%= link_to gravator_for(@recipe.chef), recipes_path %>
+   <div >Created <%= time_ago_in_words(@recipe.created_at) %> ago</div>
+</p>	
+</div>
+</div>
