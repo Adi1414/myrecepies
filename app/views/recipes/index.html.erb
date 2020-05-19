@@ -1,8 +1,8 @@
-<%= render 'shared/title', title: 'Listing All Articles'%>
+<%= render 'shared/title', title: 'Listing All Recipes'%>
  <% @recipes.each  do |recipe| %>
 <div class = "row">
 	<div class= "col-md-2">
-      <section class="center">
+      <section class="chef-intro center">
         <%= link_to gravator_for(recipe.chef,size: 120), recipes_path %>
       </section>
 	</div>
