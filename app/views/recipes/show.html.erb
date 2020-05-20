@@ -1,16 +1,25 @@
 <%= render 'shared/title', title: @recipe.name %>
-<div class="row">
+
 <div class="well col-md-8 col-md-offset-2">
-<h4 class="center description"><strong>Steps:</strong></h4>
-<hr/>
-<%= simple_format(@recipe.description) %>
-<p >
-   Created by:
-</p>
-<p>
-   <small><%= @recipe.chef.chefname %>  </small>	
-   <div><%= link_to gravator_for(@recipe.chef), recipes_path %>
-   <div >Created <%= time_ago_in_words(@recipe.created_at) %> ago</div>
-</p>	
+  <h4 class="center description"><strong>Steps: </strong></h4>
+  <hr />
+  <%= simple_format(@recipe.description) %>
+  <hr />
+  <div class="recipe-actions">
+	<%= link_to "Edit this recipe", edit_recipe_path(@recipe),class: "btn btn-xs btn-warning" %>
+	<%= link_to "Delete this recipe", recipe_path(@recipe), method: :delete, data: {confirm: "Are you confirm you want to delete"}, class: "btn btn-xs btn-danger" %>
+	<%= link_to "Return to recipes listing", recipes_path,class: "btn btn-xs btn-primary" %>
 </div>
+  <div class="pull-right">
+    <p class="center">
+      <em>Created by:</em>
+    </p>
+    <p class="center">
+     <%= link_to gravator_for(@recipe.chef), recipes_path %>
+    </p>
+    <p class="center">
+      <small><%= @recipe.chef.chefname.capitalize %></small>
+      <div class="pull-right"><%= time_ago_in_words(@recipe.created_at) %> ago</div>
+    </p>
+  </div>
 </div>
