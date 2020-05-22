@@ -5,7 +5,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   def setup
-   @chef = Chef.create!(chefname: "master chef", email: "masterchef@examole.com")
+   @chef = Chef.create!(chefname: "master chef", email: "masterchef@examole.com", password: "jewel", password_confirmation: "jewel")
    @recipe = Recipe.create!(name: "Paneer tikka", description: "Contains garlic paste, origano and sauces", chef: @chef )
    @recipe2 = @chef.recipes.build(name: "Paneer dopyaza", description: "Contains onion, garlic paste, origano and sauces" )
    @recipe2.save!

@@ -5,7 +5,7 @@ class RecipeEditTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   def setup
-  @chef = Chef.create!(chefname: "mashrur",email: "mashrur@example.com")
+  @chef = Chef.create!(chefname: "mashrur",email: "mashrur@example.com", password: "jewel", password_confirmation: "jewel")
   @recipe = Recipe.create(name: "vegetable saute",description: "great vegetable sautee, add vegetable and oil", chef: @chef)
   end
 
