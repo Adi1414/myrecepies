@@ -21,4 +21,17 @@ class ChefShowTest < ActionDispatch::IntegrationTest
     assert_match @recipe2.description, response.body
     assert_match @chef.chefname, response.body
   end
+
+  test "should get index page" do
+   get chefs_path
+   assert_response :success
+  end
+
+  test "should get chefs listing" do
+    get chefs_path
+    assert_template 'chefs/index'
+  assert_select "a[href=?]", chef_path(@chef), text: @chef.chefname.capitalize
+ 
+  end
+
 end
