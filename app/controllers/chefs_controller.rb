@@ -18,6 +18,13 @@ def create
   end
 end
 
+def destroy
+  @chef = Chef.find(params[:id])
+  @chef.destroy
+  flash[:danger] = "Chef and its associated recipes has been deleted"
+  redirect_to chefs_path
+end 
+
 def show
    @chef = Chef.find(params[:id])
 end	

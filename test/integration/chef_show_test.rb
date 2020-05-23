@@ -6,6 +6,7 @@ class ChefShowTest < ActionDispatch::IntegrationTest
   # end
   def setup
   	 @chef = Chef.create!(chefname: "mashrur",email: "mashrur@example.com", password: "jewel", password_confirmation: "jewel")
+      @chef2 = Chef.create!(chefname: "tomato",email: "tomato@example.com", password: "jewel", password_confirmation: "jewel")
      @recipe = Recipe.create!(name: "Paneer tikka", description: "Contains garlic paste, origano and sauces", chef: @chef )
      @recipe2 = @chef.recipes.build(name: "Paneer dopyaza", description: "Contains onion, garlic paste, origano and sauces" )
      @recipe2.save!
@@ -33,5 +34,14 @@ class ChefShowTest < ActionDispatch::IntegrationTest
   assert_select "a[href=?]", chef_path(@chef), text: @chef.chefname.capitalize
  
   end
-
+  
+   test "should delete chef" do
+    get chefs_path
+    assert_template 'chefs/index'
+    assert_difference 'Chef.count', -1 do
+      delete chef_path(@chef2)
+    end
+    assert_redirected_to chefs_path
+    assert_not flash.empty?
+  end
 end
