@@ -28,9 +28,27 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <form class="form-inline ">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <ul class="navbar-nav my-2 my-lg-0">
+      
+      <li class="nav-item">
+      <%= link_to 'Log in', login_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Options
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
+          <%= link_to 'Log out', logout_path, method: :delete,class: "dropdown-item"  %>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
   </div>
 </nav>
