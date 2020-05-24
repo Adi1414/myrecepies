@@ -6,7 +6,8 @@ class ChefShowTest < ActionDispatch::IntegrationTest
   # end
   def setup
   	 @chef = Chef.create!(chefname: "mashrur",email: "mashrur@example.com", password: "jewel", password_confirmation: "jewel")
-      @chef2 = Chef.create!(chefname: "tomato",email: "tomato@example.com", password: "jewel", password_confirmation: "jewel")
+     @chef2 = Chef.create!(chefname: "tomato",email: "tomato@example.com", password: "jewel", password_confirmation: "jewel")
+     @admin = Chef.create!(chefname: "tomato1",email: "tomato1@example.com", password: "jewel", password_confirmation: "jewel", admin: true)
      @recipe = Recipe.create!(name: "Paneer tikka", description: "Contains garlic paste, origano and sauces", chef: @chef )
      @recipe2 = @chef.recipes.build(name: "Paneer dopyaza", description: "Contains onion, garlic paste, origano and sauces" )
      @recipe2.save!
@@ -36,7 +37,7 @@ class ChefShowTest < ActionDispatch::IntegrationTest
   end
   
 test "should delete chef" do
-    sign_in_as(@chef, "jewel")
+    sign_in_as(@admin, "jewel")
     get chefs_path
     assert_template 'chefs/index'
     assert_difference 'Chef.count', -1 do
