@@ -24,6 +24,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end 
 
   test "should show list of all recipes" do
+    sign_in_as(@chef, "jewel")
     get recipe_path(@recipe)
     assert_template 'recipes/show'
     assert_match @recipe.name, response.body
@@ -46,6 +47,7 @@ test "reject invalid recipe submissions" do
 end  
   
   test "create valid recips" do
+   sign_in_as(@chef, "jewel")
    get new_recipe_path
    assert_template "recipes/new" 
    name_of_recipe = "chicken saute"
