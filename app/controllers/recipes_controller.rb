@@ -42,6 +42,7 @@ def update
   end
 end
 
+
 def destroy
   Recipe.find(params[:id]).destroy
   flash[:success] = "Recipe deleted successfully"

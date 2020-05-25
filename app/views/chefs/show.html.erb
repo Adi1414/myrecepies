@@ -4,6 +4,9 @@
     <%= gravator_for @chef, size: 150 %>
   </div>
 </div>
-
+<% if @chef.recipes.count !=0 %>
 <h4 align="center"><%= @chef.chefname %>'s recipes</h4>
 <%= render 'layouts/shared_show', obj: @chef.recipes %>
+<% else %>
+<h4 align="center">No recipes yet!</h4>
+<% end %>
