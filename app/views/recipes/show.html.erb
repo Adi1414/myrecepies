@@ -15,7 +15,10 @@
       data: { confirm: "Are you sure you want to delete this recipe?" },
                                       class: "btn btn-xs btn-danger" %>
   <% end %>  
-  <% end %>                                 
+  <% end %> 
+  <% if @recipe.ingredients.any? %> 
+    <p>Ingredients: <%= render @recipe.ingredients %></p>
+  <% end %>                               
   <%= link_to "Return to recipes listing", recipes_path, 
                                 class: "btn btn-xs btn-primary" %>
 </div>

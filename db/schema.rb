@@ -49,8 +49,4 @@ ActiveRecord::Schema.define(version: 2020_05_25_124717) do
     t.integer "chef_id"
   end
 
-  create_table "table_ingredients", force: :cascade do |t|
-    t.string "name"
-  end
-
 end
