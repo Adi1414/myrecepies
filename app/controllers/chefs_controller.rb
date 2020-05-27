@@ -16,6 +16,7 @@ def create
   @chef = Chef.new(perimited_chef_params)
   if @chef.save
     session[:chef_id] = @chef.id
+    cookies.signed[:chef_id] = @chef.id
     flash[:success] = "Welcome #{@chef.chefname} to this app"
   	redirect_to chef_path(@chef)
   else 
