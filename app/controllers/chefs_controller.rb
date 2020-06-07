@@ -17,6 +17,7 @@ def create
   if @chef.save
     session[:chef_id] = @chef.id
     cookies.signed[:chef_id] = @chef.id
+    ChefMailer.sample_email(@chef).deliver_later
     flash[:success] = "Welcome #{@chef.chefname} to this app"
   	redirect_to chef_path(@chef)
   else 
