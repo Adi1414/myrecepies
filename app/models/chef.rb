@@ -10,4 +10,20 @@ has_secure_password
 validates :password, presence: true, length: {minimum: 5} , allow_nil: true
 has_many :comments
 has_many :likes, dependent: :destroy
+before_create :confirmation_token
+
+def email_activate
+    self.confirmed = true
+    self.confirm_code = nil
+    save!(:validate => false)
+end
+
+private
+def confirmation_token
+    if self.confirm_code.blank?
+       self.confirm_code = SecureRandom.urlsafe_base64.to_s
+    end
+end
+
+
 end

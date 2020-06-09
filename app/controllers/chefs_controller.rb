@@ -12,14 +12,17 @@ def new
   @chef = Chef.new
 end
 
+  
 def create
   @chef = Chef.new(perimited_chef_params)
   if @chef.save
-    session[:chef_id] = @chef.id
-    cookies.signed[:chef_id] = @chef.id
-    ChefMailer.sample_email(@chef).deliver_later
-    flash[:success] = "Welcome #{@chef.chefname} to this app"
-  	redirect_to chef_path(@chef)
+    # session[:chef_id] = @chef.id
+    # cookies.signed[:chef_id] = @chef.id
+    # @chef.confirm_code = get_random(6)
+    ChefMailer.sample_email(@chef).deliver_now
+    flash[:success] = "Please confirm your email address to continue"
+  	# redirect_to chef_path(@chef)
+    redirect_to root_url
   else 
   	render 'new'
   end
@@ -46,16 +49,30 @@ def update
    # @chef = Chef.find(params[:id])
   if @chef.update(perimited_chef_params)
     flash[:success] = "#{@chef.chefname} updated successfully"
-    redirect_to @chef
+    #redirect_to @chef
+
   else
     render 'edit'
   end
 end  
 
+def confirm_email
+    chef = Chef.find_by_confirm_code(params[:id])
+    if chef
+      chef.email_activate
+      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
+      Please sign in to continue."
+      redirect_to login_url
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
+    end
+end
+
 private 
 
 def perimited_chef_params
-   params.require(:chef).permit(:chefname, :email, :password, :password_confirmation)
+   params.require(:chef).permit(:chefname, :email, :password, :password_confirmation, :confirmed, :confirm_code)
 end
 
 def set_chef
@@ -76,5 +93,9 @@ def require_admin
 end
 end
 
+# def get_random(num)
+#   charset = Array('A'..'Z') + Array('a'..'z') + Array(1..9)
+#   Array.new(num) { charset.sample }.join
+# end  
 
 end	

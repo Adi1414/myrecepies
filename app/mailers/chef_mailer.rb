@@ -2,9 +2,9 @@ class ChefMailer < ApplicationMailer
 
 default from: "from@example.com"
 
-  def sample_email(user)
-    @user = user
-    mail(to: @user.email, subject: 'Sample Email')
+  def sample_email(chef)
+    @chef = chef
+    mail(to: @chef.email, subject: 'Sample Email')
   end
 
 end

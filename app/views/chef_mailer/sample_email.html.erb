@@ -4,9 +4,17 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @user.chefname %></h1>
+    <h1>Hi <%= @chef.chefname %></h1>
     <p>
-      Sample mail sent using smtp.
+     Thanks for registering! To confirm your registration click the URL below.
+    </p>
+    <p>
+     <%= confirm_email_chef_url(@chef.confirm_code) %>
     </p>
   </body>
 </html>
+
+
+
+
+

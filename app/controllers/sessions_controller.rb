@@ -1,5 +1,5 @@
+
 class SessionsController < ApplicationController
-  before_action: logged_in_path
   
   def new
     
@@ -8,10 +8,16 @@ class SessionsController < ApplicationController
   def create
     chef = Chef.find_by(email: params[:session][:email].downcase)
     if chef && chef.authenticate(params[:session][:password])
-      session[:chef_id] = chef.id
-      cookies.signed[:chef_id] = chef.id
-      flash[:success] = "You have successfully logged in"
-      redirect_to chef
+      if chef.confirmed
+          session[:chef_id] = chef.id
+          cookies.signed[:chef_id] = chef.id
+          flash[:success] = "You have successfully logged in"
+          redirect_to chef
+      else
+        flash.now[:error] = 'Please activate your account by following the 
+        instructions in the account confirmation email you received to proceed'
+        render 'new'
+      end
     else
       flash.now[:danger] = "There was something wrong with your login information"
       render 'new'
