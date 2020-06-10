@@ -54,7 +54,9 @@ end
 private 
 
 def perimited_chef_params
-   params.require(:chef).permit(:chefname, :email, :password, :password_confirmation)
+
+   params.require(:chef).permit(:chefname, :email, :password, :password_confirmation, :confirmed, :confirm_code, :reset_password_token, :reset_password_sent_at)
+
 end
 
 def set_chef

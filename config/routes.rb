@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # get  '/recipes', to: 'recipes#index'
   # get 'recipes/new', to: 'recipies#new'
   # get 'recipes/:id', to: 'recipes#show', as: 'recipe'
+ resources :passwords
 
   resources :recipes do
   	resources :comments, only: [:create]
