@@ -15,12 +15,15 @@ end
 def create
   @chef = Chef.new(perimited_chef_params)
   if @chef.save
-    session[:chef_id] = @chef.id
-    cookies.signed[:chef_id] = @chef.id
-    flash[:success] = "Welcome #{@chef.chefname} to this app"
-  	redirect_to chef_path(@chef)
+    # session[:chef_id] = @chef.id
+    # cookies.signed[:chef_id] = @chef.id
+    # @chef.confirm_code = get_random(6)
+    ChefMailer.sample_email(@chef).deliver_now
+    flash[:success] = "Please confirm your email address to continue"
+    # redirect_to chef_path(@chef)
+    redirect_to root_url
   else 
-  	render 'new'
+    render 'new'
   end
 end
 
@@ -51,12 +54,23 @@ def update
   end
 end  
 
+def confirm_email
+    chef = Chef.find_by_confirm_code(params[:id])
+    if chef
+      chef.email_activate
+      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
+      Please sign in to continue."
+      redirect_to login_url
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
+    end
+end
+
 private 
 
 def perimited_chef_params
-
-   params.require(:chef).permit(:chefname, :email, :password, :password_confirmation, :confirmed, :confirm_code, :reset_password_token, :reset_password_sent_at)
-
+   params.require(:chef).permit(:chefname, :email, :password, :password_confirmation, :confirmed, :confirm_code)
 end
 
 def set_chef

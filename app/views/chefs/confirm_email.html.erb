@@ -1,0 +1,28 @@
+@chef.chefname please confirm your email
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(:otp, :html => {class: "form-horizontal", role: "form"},url: login_path) do |f| %>
+     
+     
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :confirm_code, "Enter OTP" %>
+        </div>
+        <div class="col-md-8">
+          <%= f.text_field :confirm_code, rows: 10, class: "form-control", placeholder: "Enter 6 digit OTP" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          <%= f.submit("Verify OTP" , class: "btn btn-primary btn-xs btn-xlarge") %>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-md-4 col-md-offset-4 colormatch">
+      [ <%= link_to "Go to Home Page", root_path %> ]
+    </div>
+  </div>
+</div>

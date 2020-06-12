@@ -19,6 +19,7 @@ def email_activate
     save!(:validate => false)
 end
 
+
 def send_password_reset
   generate_token(:reset_password_token)
   self.reset_password_sent_at = Time.zone.now
@@ -38,6 +39,7 @@ def confirmation_token
        self.confirm_code = SecureRandom.urlsafe_base64.to_s
     end
 end
+
 
 
 end
